@@ -149,15 +149,15 @@ public class UpdateManager {
         int versionCodeLocal = version.getLocal();
         int versionCodeRemote = version.getRemote();
 
-        boolean skipPromptDialog = false;
-        try {
-            skipPromptDialog = options.getBoolean("skipPromptDialog");
-        } catch (JSONException e) {}
+        boolean skipPromptDialog = true;
+        // try {
+        //     skipPromptDialog = options.getBoolean("skipPromptDialog");
+        // } catch (JSONException e) {}
 
-        boolean skipProgressDialog = false;
-        try {
-            skipProgressDialog = options.getBoolean("skipProgressDialog");
-        } catch (JSONException e) {}
+        boolean skipProgressDialog = true;
+        // try {
+        //     skipProgressDialog = options.getBoolean("skipProgressDialog");
+        // } catch (JSONException e) {}
 
         //比对版本号
         //检查软件是否有更新版本
@@ -193,10 +193,10 @@ public class UpdateManager {
     private void emitNoticeDialogOnClick() {
         isDownloading = true;
 
-        boolean skipProgressDialog = false;
-        try {
-            skipProgressDialog = options.getBoolean("skipProgressDialog");
-        } catch (JSONException e) {}
+        boolean skipProgressDialog = true;
+        // try {
+        //     skipProgressDialog = options.getBoolean("skipProgressDialog");
+        // } catch (JSONException e) {}
 
         // 显示下载对话框
         Map<String, Object> ret = msgBox.showDownloadDialog(
@@ -262,7 +262,7 @@ public class UpdateManager {
         // 启动新线程下载软件
         downloadApkThread = new DownloadApkThread(mContext, mHandler, mProgress, mDownloadDialog, checkUpdateThread.getMHashMap(), options);
         this.cordova.getThreadPool().execute(downloadApkThread);
-        // new Thread(downloadApkThread).start();
+         new Thread(downloadApkThread).start();
     }
 
 }
